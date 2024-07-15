@@ -54,7 +54,7 @@
         if (window.fin !== undefined) {
 
            const systemHandler = (ctx) => {
-               document.getElementById('display').textContent = JSON.stringify(ctx);
+               document.getElementById('display').textContent = ctx.name;
            };
         
            const systemListener = fin.me.interop.addContextHandler(systemHandler);
