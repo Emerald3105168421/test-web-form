@@ -49,7 +49,24 @@
         document.getElementById('myForm').addEventListener('submit', function(event) {
             event.preventDefault();
             var userInput = document.getElementById('userInput').value;
-            document.getElementById('display').textContent = 'You entered: ' + userInput;
+            if (window.fin !== undefined) {
+               const context = {
+                  "type": "fdc3.instrument",
+                  "name": userInput,
+               };
+            
+               try {
+                   console.log("setting context on system contextual group", context);
+            
+                   fin.me.interop.setContext(context);
+                 } catch(error) {
+                  console.warn(
+                     "You are not bound to a system context group and are unable to set context",
+                     error
+                  );
+               }
+            
+            }
         });
         if (window.fin !== undefined) {
 
